@@ -1,0 +1,10 @@
+const express = require('express');
+const router = express.Router();
+const ctrl = require('../controllers/adminController');
+const { protect, requireAdmin } = require('../middleware/auth');
+router.use(protect, requireAdmin);
+router.get('/users', ctrl.getUsers);
+router.get('/stats', ctrl.getStats);
+router.patch('/users/:id/toggle', ctrl.toggleUser);
+router.patch('/users/:id/subscription', ctrl.updateSubscription);
+module.exports = router;
